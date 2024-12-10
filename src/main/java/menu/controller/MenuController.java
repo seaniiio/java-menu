@@ -24,7 +24,6 @@ public class MenuController {
 
     public void run() {
         outputView.printStartMessage();
-        menuService.initMenus();
         InputProcessor.continueUntilNormalInput(this::processCoachesInput, outputView::printErrorMessage);
 
         List<CoachDto> coaches = menuService.getCoaches();

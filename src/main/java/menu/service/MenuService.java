@@ -19,7 +19,7 @@ public class MenuService {
     private final CoachRepository coachRepository = CoachRepository.getInstance();
     private final AllocateRepository allocateRepository = AllocateRepository.getInstance();
 
-    public void initMenus() {
+    public MenuService() {
         menuRepository.initMenu();
     }
 
