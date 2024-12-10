@@ -1,6 +1,6 @@
 package menu.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import menu.util.RandomUtil;
 
 public enum Category {
 
@@ -20,8 +20,8 @@ public enum Category {
         this.sequence = sequence;
     }
 
-    public static Category getRandomCategory() {
-         return Category.findBySequence(Randoms.pickNumberInRange(1, 5));
+    public static Category getRandomCategory(RandomUtil randomUtil) {
+         return Category.findBySequence(randomUtil.pickRandomNumber(1, 5));
     }
 
     private static Category findBySequence(int sequence) {
