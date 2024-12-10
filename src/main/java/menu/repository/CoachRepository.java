@@ -2,8 +2,10 @@ package menu.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import menu.constant.ErrorMessage;
 import menu.domain.Coach;
@@ -25,6 +27,7 @@ public class CoachRepository {
 
     public void saveCoaches(List<String> coachesRaw) {
         validateCoachNumber(coachesRaw);
+        validateCoachDuplicated(coachesRaw);
 
         List<Coach> parsedCoaches = new ArrayList<>();
         for (String coach : coachesRaw) {
@@ -62,6 +65,13 @@ public class CoachRepository {
     private void validateCoachNumber(List<String> coaches) {
         if (coaches.size() < COACH_NUMBER_MIN || coaches.size() > COACH_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.COACH_NUMBER_ERROR.getErrorMessage());
+        }
+    }
+
+    private void validateCoachDuplicated(List<String> coachesRaw) {
+        Set<String> coachesWithoutDuplicate = new HashSet<>(coachesRaw);
+        if (coachesRaw.size() != coachesWithoutDuplicate.size()) {
+            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_DUPLICATED_ERROR.getErrorMessage());
         }
     }
 }
