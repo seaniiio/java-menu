@@ -24,6 +24,10 @@ public class Coach {
         this.menus = new HashMap<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validate(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.COACH_NAME_LENGTH_ERROR.getErrorMessage());

@@ -1,8 +1,12 @@
 package menu.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import menu.constant.ErrorMessage;
+import menu.dto.CoachDto;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
+import menu.util.Parser;
 
 public class MenuService {
 
@@ -16,5 +20,15 @@ public class MenuService {
     public void setCoaches(String coachesInput) {
         List<String> coaches = Parser.parseCoaches(coachesInput);
         coachRepository.saveCoaches(coaches);
+    }
+
+    public List<CoachDto> getCoaches() {
+        return coachRepository.getCoachesNames().stream()
+                .map(CoachDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public void validateMenus(List<String> parsedProhibitedMenus) {
+        menuRepository.validateMenus(parsedProhibitedMenus);
     }
 }
