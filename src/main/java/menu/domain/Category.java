@@ -32,4 +32,9 @@ public enum Category {
         }
         return NULL;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -1,7 +1,9 @@
 package menu.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import menu.constant.ErrorMessage;
 import menu.domain.Coach;
@@ -39,6 +41,22 @@ public class CoachRepository {
 
     public List<Coach> getCoaches() {
         return new ArrayList<>(coaches);
+    }
+
+    public void setProhibitedMenus(String name, List<String> parsedProhibitedMenus) {
+        for (Coach coach : coaches) {
+            if (coach.ofName(name)) {
+                coach.setProhibitedMenu(parsedProhibitedMenus);
+            }
+        }
+    }
+
+    public Map<String, List<String>> getDiets() {
+        Map<String, List<String>> diets = new HashMap<>();
+        for (Coach coach : coaches) {
+            diets.put(coach.getName(), coach.getMenus());
+        }
+        return diets;
     }
 
     private void validateCoachNumber(List<String> coaches) {

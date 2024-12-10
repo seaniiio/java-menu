@@ -1,7 +1,8 @@
 package menu.controller;
 
 import java.util.List;
-import menu.constant.Weekdays;
+import menu.dto.CategoriesDto;
+import menu.dto.CoachDietDto;
 import menu.dto.CoachDto;
 import menu.service.MenuService;
 import menu.util.InputProcessor;
@@ -32,13 +33,18 @@ public class MenuController {
         }
 
         menuService.allocateMenu();
+
+        CategoriesDto categories = menuService.getCategories();
+        List<CoachDietDto> diets = menuService.getDiets();
+
+        outputView.printResult(categories, diets);
     }
 
     private void processProhibitedMenusInput(CoachDto coach) {
         String prohibitedMenus = inputView.prohibitedMenuInput(coach.getName());
         List<String> parsedProhibitedMenus = Parser.parseMenus(prohibitedMenus);
         menuService.validateMenus(parsedProhibitedMenus);
-        coach.setProhibitedMenus(parsedProhibitedMenus);
+        menuService.setProhibitedMenus(coach, parsedProhibitedMenus);
     }
 
     private void processCoachesInput() {

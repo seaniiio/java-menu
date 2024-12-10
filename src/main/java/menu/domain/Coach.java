@@ -1,9 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import menu.constant.ErrorMessage;
 import menu.constant.Weekdays;
 
@@ -14,17 +12,17 @@ public class Coach {
 
     private final String name;
     private List<String> prohibitedMenu;
-    private Map<Weekdays, String> menus;
+    private List<String> menus;
 
     public Coach(String name) {
         validate(name);
         this.name = name;
         this.prohibitedMenu = new ArrayList<>();
-        this.menus = new HashMap<>();
+        this.menus = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public void setProhibitedMenu(List<String> prohibitedMenu) {
+        this.prohibitedMenu = new ArrayList<>(prohibitedMenu);
     }
 
     private void validate(String name) {
@@ -38,13 +36,23 @@ public class Coach {
             return false;
         }
 
-        for (Weekdays weekday : menus.keySet()) {
-            if (menus.get(weekday).contains(menu)) {
-                return false;
-            }
+        if (menus.contains(menu)) {
+            return false;
         }
 
-        menus.put(day, menu);
+        menus.add(menu);
         return true;
+    }
+
+    public boolean ofName(String name) {
+        return this.name.equals(name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getMenus() {
+        return new ArrayList<>(menus);
     }
 }

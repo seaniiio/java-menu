@@ -37,12 +37,17 @@ public class AllocateRepository {
         }
     }
 
+    public List<Category> getCategories() {
+        return new ArrayList<>(allocatedCategories);
+    }
+
     private Category selectCategory() {
         Category category;
         do {
             category = Category.getRandomCategory();
         } while (!checkCategoryHistory(category));
 
+        allocatedCategories.add(category);
         return category;
     }
 

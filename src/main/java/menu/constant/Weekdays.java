@@ -14,4 +14,15 @@ public enum Weekdays {
     Weekdays(String name) {
         this.name = name;
     }
+
+    public static String getMessage() {
+        String message = "[ 구분";
+
+        for (Weekdays day : Weekdays.values()) {
+            message += (" | " + day.name);
+        }
+        message += " ]";
+
+        return message;
+    }
 }
