@@ -15,7 +15,7 @@ public class Coach {
 
     private final String name;
     private List<Menu> prohibitedMenu;
-    private Map<Weekdays, Menu> menus;
+    private Map<Weekdays, String> menus;
 
     public Coach(String name) {
         validate(name);

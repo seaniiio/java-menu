@@ -9,6 +9,10 @@ public class MenuService {
     private final MenuRepository menuRepository = MenuRepository.getInstance();
     private final CoachRepository coachRepository = CoachRepository.getInstance();
 
+    public void initMenus() {
+        menuRepository.initMenu();
+    }
+
     public void setCoaches(String coachesInput) {
         List<String> coaches = Parser.parseCoaches(coachesInput);
         coachRepository.saveCoaches(coaches);
