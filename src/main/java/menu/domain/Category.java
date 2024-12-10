@@ -24,6 +24,10 @@ public enum Category {
          return Category.findBySequence(randomUtil.pickRandomNumber(1, 5));
     }
 
+    public String getName() {
+        return name;
+    }
+
     private static Category findBySequence(int sequence) {
         for (Category category : Category.values()) {
             if (category.sequence == sequence) {

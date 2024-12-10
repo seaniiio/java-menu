@@ -5,7 +5,7 @@ import java.util.List;
 import menu.constant.Weekdays;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.util.RandomNumberMachine;
+import menu.util.RandomCategoryNumberUtil;
 
 public class AllocateRepository {
 
@@ -47,7 +47,7 @@ public class AllocateRepository {
     private Category selectCategory() {
         Category category;
         do {
-            category = Category.getRandomCategory(new RandomNumberMachine());
+            category = Category.getRandomCategory(new RandomCategoryNumberUtil());
         } while (!checkCategoryHistory(category));
 
         allocatedCategories.add(category);
