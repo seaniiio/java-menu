@@ -21,19 +21,21 @@ public class AllocateRepository {
         return allocateRepository;
     }
 
-    // depth 3!
     public void allocateMenu(Weekdays day) {
         Category category = selectCategory();
 
         List<Coach> coaches = coachRepository.getCoaches();
         for (Coach coach : coaches) {
-            while (true) {
-                String menu = menuRepository.getRandomMenuOfCategory(category);
-                if (coach.allocateMenu(menu, day)) {
-                    break;
-                }
-            }
+            allocateValidMenu(day, coach, category);
+        }
+    }
 
+    private void allocateValidMenu(Weekdays day, Coach coach, Category category) {
+        while (true) {
+            String menu = menuRepository.getRandomMenuOfCategory(category);
+            if (coach.allocateMenu(menu, day)) {
+                break;
+            }
         }
     }
 
