@@ -1,6 +1,7 @@
 package menu.controller;
 
 import java.util.List;
+import menu.constant.Weekdays;
 import menu.dto.CoachDto;
 import menu.service.MenuService;
 import menu.util.InputProcessor;
@@ -29,6 +30,8 @@ public class MenuController {
         for (CoachDto coach : coaches) {
             InputProcessor.continueUntilNormalInput(this::processProhibitedMenusInput, outputView::printErrorMessage, coach);
         }
+
+        menuService.allocateMenu();
     }
 
     private void processProhibitedMenusInput(CoachDto coach) {

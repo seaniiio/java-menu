@@ -12,13 +12,13 @@ public class CoachRepository {
     private static final int COACH_NUMBER_MAX = 5;
 
     // 테스트 어케하쥥..
-    private static final CoachRepository instance = new CoachRepository();
+    private static final CoachRepository coachRepository = new CoachRepository();
     private static List<Coach> coaches = new ArrayList<>();
 
     private CoachRepository() {};
 
     public static CoachRepository getInstance() {
-        return instance;
+        return coachRepository;
     }
 
     public void saveCoaches(List<String> coachesRaw) {
@@ -35,6 +35,10 @@ public class CoachRepository {
         return coaches.stream()
                 .map(Coach::getName)
                 .collect(Collectors.toList());
+    }
+
+    public List<Coach> getCoaches() {
+        return new ArrayList<>(coaches);
     }
 
     private void validateCoachNumber(List<String> coaches) {

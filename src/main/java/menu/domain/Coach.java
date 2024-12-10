@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.awt.Menu;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +13,7 @@ public class Coach {
     private static final int MAX_NAME_LENGTH = 4;
 
     private final String name;
-    private List<Menu> prohibitedMenu;
+    private List<String> prohibitedMenu;
     private Map<Weekdays, String> menus;
 
     public Coach(String name) {
@@ -32,5 +31,20 @@ public class Coach {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.COACH_NAME_LENGTH_ERROR.getErrorMessage());
         }
+    }
+
+    public boolean allocateMenu(String menu, Weekdays day) {
+        if (prohibitedMenu.contains(menu)) {
+            return false;
+        }
+
+        for (Weekdays weekday : menus.keySet()) {
+            if (menus.get(weekday).contains(menu)) {
+                return false;
+            }
+        }
+
+        menus.put(day, menu);
+        return true;
     }
 }

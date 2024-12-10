@@ -1,5 +1,6 @@
 package menu.repository;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,10 @@ public class MenuRepository {
                 throw new IllegalArgumentException(ErrorMessage.MENU_NOT_EXIST_ERROR.getErrorMessage());
             }
         }
+    }
+
+    public String getRandomMenuOfCategory(Category category) {
+        return Randoms.shuffle(menus.get(category)).get(0);
     }
 
     private boolean isMenuExist(String parsedProhibitedMenu) {
