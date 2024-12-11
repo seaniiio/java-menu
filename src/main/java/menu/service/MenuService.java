@@ -12,6 +12,7 @@ import menu.repository.AllocateRepository;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
 import menu.util.Parser;
+import menu.util.RandomNumberUtil;
 
 public class MenuService {
 
@@ -44,7 +45,7 @@ public class MenuService {
 
     public void allocateMenu() {
         for (Weekdays day : Weekdays.values()) {
-            allocateRepository.allocateMenu(day);
+            allocateRepository.allocateMenu(day, new RandomNumberUtil());
         }
     }
 

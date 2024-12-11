@@ -23,18 +23,18 @@ public class AllocateRepository {
         return allocateRepository;
     }
 
-    public void allocateMenu(Weekdays day) {
+    public void allocateMenu(Weekdays day, RandomUtil randomUtil) {
         Category category = selectCategory();
 
         List<Coach> coaches = coachRepository.getCoaches();
         for (Coach coach : coaches) {
-            allocateValidMenu(day, coach, category);
+            allocateValidMenu(day, coach, category, randomUtil);
         }
     }
 
-    private void allocateValidMenu(Weekdays day, Coach coach, Category category) {
+    private void allocateValidMenu(Weekdays day, Coach coach, Category category, RandomUtil randomUtil) {
         while (true) {
-            String menu = menuRepository.getRandomMenuOfCategory(category, new RandomNumberUtil());
+            String menu = menuRepository.getRandomMenuOfCategory(category, randomUtil);
             if (coach.allocateMenu(menu, day)) {
                 break;
             }
