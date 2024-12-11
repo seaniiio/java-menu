@@ -5,7 +5,8 @@ import java.util.List;
 import menu.constant.Weekdays;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.util.RandomCategoryNumberUtil;
+import menu.util.RandomNumberUtil;
+import menu.util.RandomUtil;
 
 public class AllocateRepository {
 
@@ -33,7 +34,7 @@ public class AllocateRepository {
 
     private void allocateValidMenu(Weekdays day, Coach coach, Category category) {
         while (true) {
-            String menu = menuRepository.getRandomMenuOfCategory(category);
+            String menu = menuRepository.getRandomMenuOfCategory(category, new RandomNumberUtil());
             if (coach.allocateMenu(menu, day)) {
                 break;
             }
@@ -47,7 +48,7 @@ public class AllocateRepository {
     private Category selectCategory() {
         Category category;
         do {
-            category = Category.getRandomCategory(new RandomCategoryNumberUtil());
+            category = Category.getRandomCategory(new RandomNumberUtil());
         } while (!checkCategoryHistory(category));
 
         allocatedCategories.add(category);

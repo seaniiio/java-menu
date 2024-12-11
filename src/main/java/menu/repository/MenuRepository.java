@@ -1,11 +1,11 @@
 package menu.repository;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import menu.constant.ErrorMessage;
 import menu.domain.Category;
+import menu.util.RandomUtil;
 
 public class MenuRepository {
 
@@ -43,8 +43,8 @@ public class MenuRepository {
         }
     }
 
-    public String getRandomMenuOfCategory(Category category) {
-        return Randoms.shuffle(menus.get(category)).get(0);
+    public String getRandomMenuOfCategory(Category category, RandomUtil randomUtil) {
+        return randomUtil.shuffle(menus.get(category)).get(0);
     }
 
     private boolean isMenuExist(String parsedProhibitedMenu) {

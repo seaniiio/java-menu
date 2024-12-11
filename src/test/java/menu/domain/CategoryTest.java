@@ -1,8 +1,6 @@
 package menu.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import menu.util.RandomTestNumberUtil;
+import menu.util.RandomNumberTestUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,9 +16,9 @@ class CategoryTest {
             "5, 양식"
     })
     void 카테고리_탐색_테스트(int sequence, String name) {
-        RandomTestNumberUtil randomTestNumberUtil = new RandomTestNumberUtil(sequence);
+        RandomNumberTestUtil randomNumberTestUtil = new RandomNumberTestUtil(sequence);
 
-        Assertions.assertThat(Category.getRandomCategory(randomTestNumberUtil).getName())
+        Assertions.assertThat(Category.getRandomCategory(randomNumberTestUtil).getName())
                 .isEqualTo(name);
     }
 }
